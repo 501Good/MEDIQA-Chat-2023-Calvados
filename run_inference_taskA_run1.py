@@ -3,12 +3,12 @@ import sys
 import pandas as pd
 from transformers import pipeline
 
-from src.stanza_utils import insert_taskA_tag
+from src.stanza_utils import insert_taskA_2tag
 
 tokenizer_model_id = "google/flan-t5-base"
 generation_model_id = "google/flan-t5-base"
 
-model_id = "flan-t5-base-taskA-stanza-2SpecialTag-LR5e-5"
+model_id = "./trained_models/flan-t5-base-taskA-stanza-2SpecialTag-LR5e-5"
 summarizer = pipeline("summarization", model=model_id)
 
 sys_args = sys.argv
@@ -16,7 +16,7 @@ print(sys_args[1])
 file_name = sys_args[1].split('.')[-2]
 dataset = load_dataset('csv', data_files={'inference': sys_args[1]})
 
-tagged_df = [insert_taskA_tag(t) for t in dataset['inference']]
+tagged_df = [insert_taskA_2tag(t) for t in dataset['inference']]
 # tagged_df = pd.DataFrame.from_dict(tagged_df)
 # tagged_df.to_csv(f"./{file_name}(tagged).csv")
 
