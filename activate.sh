@@ -1,0 +1,1 @@
+source ./venv/Calvados_taskA_venv/bin/activate
