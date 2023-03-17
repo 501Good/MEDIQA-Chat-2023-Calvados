@@ -37,4 +37,4 @@ for i, d in enumerate(tagged_df):
     final_output.append(current_data)
 
 final_output = pd.DataFrame.from_dict(final_output)
-final_output.to_csv("taskA_Calvados_run1.csv", index=False)
+final_output.to_csv("./outputs/taskA_Calvados_run1.csv", index=False)
