@@ -1,1 +1,3 @@
-source ./venv/Calvados_taskA_venv/bin/activate
+#!/bin/bash
+
+source ./Calvados_taskA_venv/bin/activate

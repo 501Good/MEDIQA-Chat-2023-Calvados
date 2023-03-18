@@ -2,6 +2,7 @@ import stanza
 
 nlp = stanza.Pipeline('en', package='mimic', processors={'ner': 'i2b2'}, use_gpu=True)
 
+
 def insert_taskA_1tag(sample):
     dialogue = sample["dialogue"]
     dialogue_tags = nlp(sample["dialogue"])
@@ -11,7 +12,7 @@ def insert_taskA_1tag(sample):
     while "<extra_id_0> <extra_id_0>" in dialogue:
         dialogue = dialogue.replace("<extra_id_0> <extra_id_0>", "<extra_id_0>")
     sample['dialogue'] = dialogue
-    
+
     '''
     section_text = sample['section_text']
     section_tags = nlp(section_text)
@@ -36,7 +37,7 @@ def insert_taskA_2tag(sample):
     while "<extra_id_1> <extra_id_1>" in dialogue:
         dialogue = dialogue.replace("<extra_id_1> <extra_id_1>", "<extra_id_1>")
     sample['dialogue'] = dialogue
-    
+
     '''
     section_text = sample['section_text']
     section_tags = nlp(section_text)
@@ -59,7 +60,8 @@ def insert_taskB_tag(sample):
     while "<extra_id_0> <extra_id_0>" in dialogue:
         dialogue = dialogue.replace("<extra_id_0> <extra_id_0>", "<extra_id_0>")
     sample['dialogue'] = dialogue
-    
+
+    '''
     section_text = sample['note']
     section_tags = nlp(section_text)
     for t in section_tags.entities:
@@ -68,4 +70,5 @@ def insert_taskB_tag(sample):
     while "<extra_id_0> <extra_id_0>" in section_text:
         section_text = section_text.replace("<extra_id_0> <extra_id_0>", "<extra_id_0>")
     sample['note'] = section_text
+    '''
     return sample
