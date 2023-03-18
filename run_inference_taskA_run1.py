@@ -63,6 +63,12 @@ class DecodingArguments:
     max_length: Optional[int] = field(default=200, metadata={"help": (
         "The maximum length the generated tokens can have. Corresponds to the length of the input prompt + "
         "max_new_tokens. Its effect is overridden by max_new_tokens, if also set.")})
+    top_k: Optional[int] = field(
+        default=50,
+        metadata={"help": "The number of highest probability vocabulary tokens to keep for top-k-filtering."})
+    penalty_alpha: Optional[float] = field(
+        default=None,
+        metadata={"help": "The values balance the model confidence and the degeneration penalty in contrastive search decoding."})
 
     def __post_init__(self):
         pass
@@ -100,6 +106,8 @@ def main():
             early_stopping=decoding_args.early_stopping,
             length_penalty=decoding_args.length_penalty,
             max_length=decoding_args.max_length,
+            top_k=decoding_args.top_k,
+            penalty_alpha=decoding_args.penalty_alpha,
         )
         text = text[0]['summary_text']
         print(type(text[0]))

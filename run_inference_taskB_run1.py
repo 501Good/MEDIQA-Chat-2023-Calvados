@@ -57,9 +57,6 @@ class DecodingArguments:
         "heuristic is applied and the generation stops when is it very unlikely to find better candidates; \"never\", "
         "where the beam search procedure only stops when there cannot be better candidates "
         "(canonical beam search algorithm).")})
-    no_early_stopping: Optional[bool] = field(
-        default=False, metadata={"help": "Turn off early stopping."}
-    )
     length_penalty: Optional[float] = field(default=2.0, metadata={"help": (
         "Exponential penalty to the length that is used with beam-based generation. It is applied as an exponent to "
         "the sequence length, which in turn is used to divide the score of the sequence. Since the score is the log "
@@ -76,8 +73,7 @@ class DecodingArguments:
         metadata={"help": "The values balance the model confidence and the degeneration penalty in contrastive search decoding."})
 
     def __post_init__(self):
-        if self.no_early_stopping is True:
-            self.early_stopping = False
+        pass
 
 
 def main():
